@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "grouped-breast-cancer-classification"
+version = "1.0.0"
+description = "Patient-grouped microcalcification classification with two-stage evaluation."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [{name = "Bahareh Keshavarz"}]
+dependencies = [
+  "numpy>=1.24",
+  "openpyxl>=3.1",
+  "pandas>=2.0",
+  "scikit-learn>=1.4",
+]
+
+[project.optional-dependencies]
+notebook = ["jupyter>=1.0", "matplotlib>=3.8", "seaborn>=0.13"]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+breast-mc-study = "breast_mc.cli:main"
+
+[project.urls]
+Repository = "https://github.com/Bahareh527/grouped-breast-cancer-classification"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+exclude = ["notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
